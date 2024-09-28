@@ -18,3 +18,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Specify the command to run your app
 CMD ["streamlit", "run", "app.py"]
+RUN apt-get update && apt-get install -y libgl1-mesa-glx
+
