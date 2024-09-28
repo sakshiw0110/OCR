@@ -1,3 +1,4 @@
+import os
 import pytesseract
 import subprocess
 import numpy as np
@@ -5,8 +6,11 @@ import streamlit as st
 from PIL import Image
 import re
 
-# Hardcode the Tesseract path for deployment
-pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"  # Update this if your path is different
+# Set the Tesseract path for deployment
+if os.getenv("STREAMLIT_SERVER"):
+    pytesseract.pytesseract.tesseract_cmd = "/usr/bin/tesseract"  # Typical path on Linux
+else:
+    pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"  # Your local path
 
 # Check if Tesseract is installed
 try:
